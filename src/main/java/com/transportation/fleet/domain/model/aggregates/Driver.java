@@ -88,5 +88,6 @@ public class Driver extends AbstractDomainAggregateRoot<Driver> {
     }
     public void deactivate() {
         this.driverStatus = DriverStatus.INACTIVE;
+
     }
 }

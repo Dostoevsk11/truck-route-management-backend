@@ -1,6 +1,7 @@
 package com.transportation.fleet.domain.model.aggregates;
 
 import com.transportation.fleet.domain.model.commands.trucks.CreateTruckCommand;
+import com.transportation.fleet.domain.model.emuns.DriverStatus;
 import com.transportation.fleet.domain.model.emuns.TruckStatus;
 import com.transportation.fleet.domain.model.valueobjects.truck.*;
 import com.transportation.fleet.domain.model.valueobjects.truck.InspectionVo;
@@ -145,6 +146,9 @@ public class Truck extends AbstractDomainAggregateRoot<Truck> {
     }
 
     public void deactivate(){
+        if (this.truckStatus != TruckStatus.AVAILABLE) {
+            throw new IllegalStateException("Truck is not available");
+        }
         this.truckStatus = TruckStatus.INACTIVE;
     }
 }
